@@ -9,7 +9,9 @@ use rand::distributions::Alphanumeric;
 
 
 pub fn open_in_editor(editor: &str, path: &str) {
-    Command::new(editor).arg(path).status().expect("How did you break your editor bro?");
+    if let Err(err) =  Command::new(editor).arg(path).status() {
+        panic!("Error when calling {}: {}", editor, err);
+    }
 }
 
 #[derive(Debug)]
@@ -33,7 +35,7 @@ impl TempFile {
         };
         let root: Rc<str> = root_path.as_path().to_str().unwrap().into();
         root_path.push(name.to_string());
-        let path: Rc<str> = format!("{}{}", root, name).into();
+        let path: Rc<str> = root_path.as_path().to_str().unwrap().into();
         let file = File::create(root_path)?;
         Ok(Self {
             filename: name.into(),
