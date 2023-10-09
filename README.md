@@ -3,7 +3,7 @@
 [![Stargazers][stars-shield]][stars-url]
 
 <div align="center">
-    <h3 align="center" Serv</h3>
+    <h1 align="center">Serv</h1>
 </div>
 
 Ill write this later, probably using this tool even lol
